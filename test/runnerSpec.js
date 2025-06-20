@@ -79,8 +79,8 @@ describe('Runner', function () {
       return run([{ url: 'https://example.com/' }])
         .then(function (events) {
           const firstEventPayload = JSON.parse(events[0].args[0])
-          assert.deepEqual(firstEventPayload.pagesChecked, 1)
-          assert.deepEqual(events[events.length - 1], { type: 'exit', args: [1] })
+          assert.deepStrictEqual(firstEventPayload.pagesChecked, 1)
+          assert.deepStrictEqual(events[events.length - 1], { type: 'exit', args: [1] })
         })
     }).timeout(10000)
   })
@@ -91,8 +91,8 @@ describe('Runner', function () {
       return run([], configPath)
         .then(function (events) {
           const firstEventPayload = JSON.parse(events[0].args[0])
-          assert.deepEqual(firstEventPayload.pagesChecked, 2)
-          assert.deepEqual(events[events.length - 1], { type: 'exit', args: [1] })
+          assert.deepStrictEqual(firstEventPayload.pagesChecked, 2)
+          assert.deepStrictEqual(events[events.length - 1], { type: 'exit', args: [1] })
         })
     }).timeout(10000)
   })

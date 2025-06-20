@@ -12,7 +12,7 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
     it('resolves with a list of pages', function () {
       return configLoader.loadConfigFromPath(pathToConfigModule('simple'))
         .then(function (config) {
-          assert.deepEqual(config, {
+          assert.deepStrictEqual(config, {
             pages: [
               { url: 'https://www.bbc.co.uk' },
               { url: 'https://www.bbc.co.uk/news' }
@@ -26,7 +26,7 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
     it('resolves with a list of pages', function () {
       return configLoader.loadConfigFromPath(pathToConfigModule('skipAndOnly'))
         .then(function (config) {
-          assert.deepEqual(config, {
+          assert.deepStrictEqual(config, {
             pages: [
               { url: 'https://www.bbc.co.uk', skip: ['x'] },
               { url: 'https://www.bbc.co.uk/news', skip: ['y', 'z'] },
@@ -42,7 +42,7 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
     it('resolves with a list of pages', function () {
       return configLoader.loadConfigFromPath(pathToConfigModule('viewportWidth'))
         .then(function (config) {
-          assert.deepEqual(config, {
+          assert.deepStrictEqual(config, {
             pages: [
               { url: 'https://www.bbc.co.uk', width: 789 }
             ]
