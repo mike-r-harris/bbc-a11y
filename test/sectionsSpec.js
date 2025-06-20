@@ -7,7 +7,7 @@ describe('Standards.sections', function () {
     const urls = {}
     for (const name in sections) {
       const section = sections[name]
-      assert.equal(typeof section.documentationUrl, 'string')
+      assert.strictEqual(typeof section.documentationUrl, 'string')
       if (urls[section.documentationUrl]) assert.fail('duplicate: ' + section.documentationUrl)
       urls[section.documentationUrl] = true
     }

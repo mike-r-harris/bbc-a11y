@@ -58,7 +58,7 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
           throw new Error('Expected a rejection')
         })
         .catch(function (e) {
-          assert.equal("Unexpected token '>'", e.message)
+          assert.strictEqual("Unexpected token '>'", e.message)
         })
     })
   })
@@ -80,7 +80,7 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
       it('resets page to its previous value', function () {
         return configLoader.loadConfigFromPath(pathToConfigModule('empty'))
           .then(function () {
-            assert.equal(666, global.page)
+            assert.strictEqual(666, global.page)
           })
       })
     })
@@ -89,10 +89,10 @@ describe('configLoader.loadConfigFromPath(pathToConfigModule)', function () {
       it('resets page to its previous value', function () {
         return configLoader.loadConfigFromPath(pathToConfigModule('syntaxError'))
           .then(function () {
-            assert.equal(666, global.page)
+            assert.strictEqual(666, global.page)
           })
           .catch(function () {
-            assert.equal(666, global.page)
+            assert.strictEqual(666, global.page)
           })
       })
     })

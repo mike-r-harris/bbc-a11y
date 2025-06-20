@@ -101,12 +101,12 @@ When('I answer {string}', function (answer) {
 
 Then('the manual test fails', function () {
   return this.countAllErrors()
-    .then(count => assert.notEqual(count, 0))
+    .then(count => assert.notStrictEqual(count, 0))
 })
 
 Then('the manual test passes', function () {
   return this.countAllErrors()
-    .then(count => assert.equal(count, 0))
+    .then(count => assert.strictEqual(count, 0))
 })
 
 When('my page configuration is:', function (string) {
@@ -123,7 +123,7 @@ When('I test the {string} standard', function (name) {
 
 Then('it passes', function () {
   if ('exitCode' in this) {
-    assert.equal(this.exitCode, 0, '\n' + this.stdout + this.stderr)
+    assert.strictEqual(this.exitCode, 0, '\n' + this.stdout + this.stderr)
   } else {
     const resultsWithErrors = this.outcome.results.filter(function (result) {
       return result.errors.length > 0
@@ -146,7 +146,7 @@ Then('it passes with the warning:', function (message) {
       }).join(' ')
     }).join('\n')
   }).join('\n')
-  assert.equal(actualMessage, message)
+  assert.strictEqual(actualMessage, message)
 })
 
 Then('it should fail with:', function (expectedOutput) {
@@ -167,7 +167,7 @@ Then('it should fail with exactly:', function (expectedOutput) {
     console.log(sanitisedActualOutput)
     process.exit(1)
   }
-  assert.equal(sanitisedActualOutput, expectedOutput, 'Expected:\n' + expectedOutput.replace(/\n/g, '[\\n]\n') + '\nActual:\n' + sanitisedActualOutput.replace(/\n/g, '[\\n]\n'))
+  assert.strictEqual(sanitisedActualOutput, expectedOutput, 'Expected:\n' + expectedOutput.replace(/\n/g, '[\\n]\n') + '\nActual:\n' + sanitisedActualOutput.replace(/\n/g, '[\\n]\n'))
 })
 
 Then('it should pass with:', function (string) {
@@ -175,7 +175,7 @@ Then('it should pass with:', function (string) {
   if (actualOutput.indexOf(string) === -1) {
     throw new Error('Expected:\n' + string + '\nActual:\n' + actualOutput)
   }
-  assert.equal(this.exitCode, 0)
+  assert.strictEqual(this.exitCode, 0)
 })
 
 Then('it fails with the message:', function (message) {
@@ -188,11 +188,11 @@ Then('it fails with the message:', function (message) {
       }).join(' ')
     }).join('\n')
   }).join('\n')
-  assert.equal(actualMessage, message)
+  assert.strictEqual(actualMessage, message)
 })
 
 Then('the exit status should be {int}', function (status) {
-  assert.equal(this.exitCode, status)
+  assert.strictEqual(this.exitCode, status)
 })
 
 Then('the window should remain open', function () {
@@ -221,10 +221,10 @@ When('I answer all questions except one with a pass', function () {
 
 Then('it should result in a pass for {url}', function (url) {
   return this.countManualTestErrors(url)
-    .then(count => assert.equal(count, 0))
+    .then(count => assert.strictEqual(count, 0))
 })
 
 Then('it should result in a fail for {url}', function (url) {
   return this.countErrorsForUrl(url)
-    .then(count => assert.notEqual(count, 0))
+    .then(count => assert.notStrictEqual(count, 0))
 })
