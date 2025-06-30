@@ -28,7 +28,7 @@
     "generate-coverage": "./scripts/generate-coverage"
   },
   "dependencies": {
-    "commander": "^7.2.0",
+    "commander": "7.2.0",
     "electron": "13.5.2",
     "jquery": "3.7.1"
   },
